@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xia.mapper.UserInfoMapper">
+	<resultMap id="BaseResultMap" type="com.xia.model.UserInfo">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_no" jdbcType="VARCHAR" property="userNo" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="spell_name" jdbcType="VARCHAR" property="spellName" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+		<result column="user_gender" jdbcType="INTEGER" property="userGender" />
+		<result column="user_img" jdbcType="VARCHAR" property="userImg" />
+		<result column="user_duty" jdbcType="VARCHAR" property="userDuty" />
+		<result column="org_id" jdbcType="INTEGER" property="orgId" />
+		<result column="enforce_no_origin" jdbcType="VARCHAR" property="enforceNoOrigin" />
+		<result column="enforce_no_envrmt" jdbcType="VARCHAR" property="enforceNoEnvrmt" />
+		<result column="sort_code" jdbcType="INTEGER" property="sortCode" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_no, user_name, spell_name, password, user_phone, user_gender,
+		user_img,
+		user_duty, org_id, enforce_no_origin, enforce_no_envrmt, sort_code, create_time,
+		update_time
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_info
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 查询所有的人员信息 -->
+	<select id="selectAllUsers"	resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_info
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_info
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.xia.model.UserInfo">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into user_info (user_no, user_name, spell_name,
+		password, user_phone, user_gender,
+		user_img, user_duty, org_id,
+		enforce_no_origin, enforce_no_envrmt, sort_code,
+		create_time, update_time)
+		values (#{userNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+		#{spellName,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userGender,jdbcType=INTEGER},
+		#{userImg,jdbcType=VARCHAR}, #{userDuty,jdbcType=VARCHAR},
+		#{orgId,jdbcType=INTEGER},
+		#{enforceNoOrigin,jdbcType=VARCHAR}, #{enforceNoEnvrmt,jdbcType=VARCHAR}, #{sortCode,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.xia.model.UserInfo">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into user_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userNo != null">
+				user_no,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="spellName != null">
+				spell_name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="userPhone != null">
+				user_phone,
+			</if>
+			<if test="userGender != null">
+				user_gender,
+			</if>
+			<if test="userImg != null">
+				user_img,
+			</if>
+			<if test="userDuty != null">
+				user_duty,
+			</if>
+			<if test="orgId != null">
+				org_id,
+			</if>
+			<if test="enforceNoOrigin != null">
+				enforce_no_origin,
+			</if>
+			<if test="enforceNoEnvrmt != null">
+				enforce_no_envrmt,
+			</if>
+			<if test="sortCode != null">
+				sort_code,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userNo != null">
+				#{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="spellName != null">
+				#{spellName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="userPhone != null">
+				#{userPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="userGender != null">
+				#{userGender,jdbcType=INTEGER},
+			</if>
+			<if test="userImg != null">
+				#{userImg,jdbcType=VARCHAR},
+			</if>
+			<if test="userDuty != null">
+				#{userDuty,jdbcType=VARCHAR},
+			</if>
+			<if test="orgId != null">
+				#{orgId,jdbcType=INTEGER},
+			</if>
+			<if test="enforceNoOrigin != null">
+				#{enforceNoOrigin,jdbcType=VARCHAR},
+			</if>
+			<if test="enforceNoEnvrmt != null">
+				#{enforceNoEnvrmt,jdbcType=VARCHAR},
+			</if>
+			<if test="sortCode != null">
+				#{sortCode,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.xia.model.UserInfo">
+		update user_info
+		<set>
+			<if test="userNo != null">
+				user_no = #{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="spellName != null">
+				spell_name = #{spellName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="userPhone != null">
+				user_phone = #{userPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="userGender != null">
+				user_gender = #{userGender,jdbcType=INTEGER},
+			</if>
+			<if test="userImg != null">
+				user_img = #{userImg,jdbcType=VARCHAR},
+			</if>
+			<if test="userDuty != null">
+				user_duty = #{userDuty,jdbcType=VARCHAR},
+			</if>
+			<if test="orgId != null">
+				org_id = #{orgId,jdbcType=INTEGER},
+			</if>
+			<if test="enforceNoOrigin != null">
+				enforce_no_origin = #{enforceNoOrigin,jdbcType=VARCHAR},
+			</if>
+			<if test="enforceNoEnvrmt != null">
+				enforce_no_envrmt = #{enforceNoEnvrmt,jdbcType=VARCHAR},
+			</if>
+			<if test="sortCode != null">
+				sort_code = #{sortCode,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.xia.model.UserInfo">
+		update user_info
+		set user_no = #{userNo,jdbcType=VARCHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
+		spell_name = #{spellName,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		user_phone = #{userPhone,jdbcType=VARCHAR},
+		user_gender = #{userGender,jdbcType=INTEGER},
+		user_img = #{userImg,jdbcType=VARCHAR},
+		user_duty = #{userDuty,jdbcType=VARCHAR},
+		org_id = #{orgId,jdbcType=INTEGER},
+		enforce_no_origin = #{enforceNoOrigin,jdbcType=VARCHAR},
+		enforce_no_envrmt = #{enforceNoEnvrmt,jdbcType=VARCHAR},
+		sort_code = #{sortCode,jdbcType=INTEGER},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
