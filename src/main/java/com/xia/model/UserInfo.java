@@ -2,63 +2,63 @@ package com.xia.model;
 
 import java.util.Date;
 
-//import org.springframework.format.annotation.DateTimeFormat;
-//import com.fasterxml.jackson.annotation.JsonFormat;
-//import io.swagger.annotations.ApiModel;
-//import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 /**
  * 执法人信息表
  * 实体类对应的数据表为：  user_info
  * @author XiaChengwei
  * @date 2017-07-27 16:50:23
  */
-//@ApiModel(value ="UserInfo")
+@ApiModel(value ="UserInfo")
 public class UserInfo {
-	//@ApiModelProperty(value = "ID")
+	@ApiModelProperty(value = "ID")
     private Integer id;
 
-    //@ApiModelProperty(value = "用户登录账号")
+    @ApiModelProperty(value = "用户登录账号")
     private String userNo;
 
-    //@ApiModelProperty(value = "姓名")
+    @ApiModelProperty(value = "姓名")
     private String userName;
 
-    //@ApiModelProperty(value = "拼音名")
+    @ApiModelProperty(value = "拼音名")
     private String spellName;
 
-    //@ApiModelProperty(value = "密码")
+    @ApiModelProperty(value = "密码")
     private String password;
 
-    //@ApiModelProperty(value = "手机号")
+    @ApiModelProperty(value = "手机号")
     private String userPhone;
 
-    //@ApiModelProperty(value = "性别")
+    @ApiModelProperty(value = "性别")
     private Integer userGender;
 
-    //@ApiModelProperty(value = "头像地址")
+    @ApiModelProperty(value = "头像地址")
     private String userImg;
 
-    //@ApiModelProperty(value = "职务")
+    @ApiModelProperty(value = "职务")
     private String userDuty;
 
-    //@ApiModelProperty(value = "所属执法机构")
+    @ApiModelProperty(value = "所属执法机构")
     private Integer orgId;
 
-    //@ApiModelProperty(value = "执法证号(属地)")
+    @ApiModelProperty(value = "执法证号(属地)")
     private String enforceNoOrigin;
 
-    //@ApiModelProperty(value = "执法证号(环保部)")
+    @ApiModelProperty(value = "执法证号(环保部)")
     private String enforceNoEnvrmt;
 
-    //@ApiModelProperty(value = "排序号")
+    @ApiModelProperty(value = "排序号")
     private Integer sortCode;
 
-    //@ApiModelProperty(value = "记录创建时间")
-    //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "记录创建时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    //@ApiModelProperty(value = "记录修改时间")
-    //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "记录修改时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     public Integer getId() {
@@ -165,7 +165,7 @@ public class UserInfo {
         this.sortCode = sortCode;
     }
 
-    //@JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getCreateTime() {
         return createTime;
     }
@@ -174,7 +174,7 @@ public class UserInfo {
         this.createTime = createTime;
     }
 
-    //@JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getUpdateTime() {
         return updateTime;
     }
